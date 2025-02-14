@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the Name</title>
+</head>
+<body>
+    <h1>🔎 Find the Name 🔎</h1>
+    <p>Find "Ranjith" and "Sangeetha" in the grid below.</p>
+    <pre>
+R   A   N   J   I   T   H   X
+B   C   D   E   F   G   H   I
+S   A   N   G   E   E   T   H
+J   K   L   M   N   O   P   Q
+    </pre>
+</body>
+</html>
