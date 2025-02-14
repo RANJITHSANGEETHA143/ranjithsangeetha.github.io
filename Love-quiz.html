@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>❓ Love Quiz ❓</h1>
+    <div id="quiz"></div>
+    <button onclick="checkAnswers()">Submit</button>
+    <p id="result"></p>
+
+    <script>
+        const quizData = [
+            { question: "What is the color of love?", options: ["Blue", "Red", "Green"], answer: "Red" },
+            { question: "Which day is Valentine’s Day?", options: ["Feb 14", "March 14", "Dec 25"], answer: "Feb 14" },
+            { question: "Who is the Greek god of love?", options: ["Ares", "Eros", "Zeus"], answer: "Eros" }
+        ];
+
+        function loadQuiz() {
+            const quizDiv = document.getElementById("quiz");
+            quizData.forEach((q, index) => {
+                let questionHTML = `<p>${index + 1}. ${q.question}</p>`;
+                q.options.forEach(option => {
+                    questionHTML += `<input type="radio" name="q${index}" value="${option}"> ${option} `;
+                });
+                quizDiv.innerHTML += questionHTML + "<br>";
+            });
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            quizData.forEach((q, index) => {
+                let selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && selected.value === q.answer) {
+                    score++;
+                }
+            });
+            document.getElementById("result").innerText = `Your Score: ${score} / ${quizData.length}`;
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
