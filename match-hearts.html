@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match the Hearts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>💖 Match the Hearts 💖</h1>
+    <div class="game-board" id="gameBoard"></div>
+
+    <script>
+        const emojis = ['❤️', '💖', '💕', '💘', '💞', '💓'];
+        let cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+        let firstCard, secondCard, lockBoard = false;
+
+        function createBoard() {
+            const board = document.getElementById('gameBoard');
+            cards.forEach((emoji, index) => {
+                let card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.emoji = emoji;
+                card.innerHTML = '?';
+                card.onclick = flipCard;
+                board.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            if (lockBoard || this.innerHTML !== '?') return;
+            this.innerHTML = this.dataset.emoji;
+            if (!firstCard) {
+                firstCard = this;
+            } else {
+                secondCard = this;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            lockBoard = true;
+            if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+                firstCard = secondCard = null;
+                lockBoard = false;
+            } else {
+                setTimeout(() => {
+                    firstCard.innerHTML = '?';
+                    secondCard.innerHTML = '?';
+                    firstCard = secondCard = null;
+                    lockBoard = false;
+                }, 1000);
+            }
+        }
+
+        createBoard();
+    </script>
+
+    <style>
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .card {
+            width: 80px;
+            height: 80px;
+            background: white;
+            color: red;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid red;
+            cursor: pointer;
+        }
+    </style>
+</body>
+</html>
