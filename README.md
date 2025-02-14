@@ -1,6 +1,6 @@
 /ranjithsangeetha.github.io  
 │── index.html           # Home Page  
-│── love-story.html      # Love Story Page  
+│── Love-story.html      # Love Story Page  
 │── gallery.html         # Gallery Page  
 │── games.html           # Love Games Page  
 │── quotes.html          # Love Quotes Page  
